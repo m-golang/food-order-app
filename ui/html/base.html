@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/styles/style.css"> <!-- Link to the CSS file -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title}} - Burger & Fishes </title>
+</head>
+<body> 
+    <div class="main-container">
+        <header>
+            <!-- Nav -->
+            <nav>
+                <div class="containers-nav containers">
+                    <div class="nav-container-left">
+                        <a href="#">
+                            <img class="home-icon" src="../static/images/burger_fish_logo.png" alt="Burger and Fish Icon">
+                        </a>
+                        <h2 class="nav-text">
+                            <a href="/" id="burgers-link" style="font-size: inherit; font-family: inherit; text-decoration: none; color: inherit;">Burgers</a>
+                        </h2>
+                        <h2 class="nav-text">
+                            <a href="/fishes" id="fishes-link" style="font-size: inherit; font-family: inherit; text-decoration: none; color: inherit;">Fishes</a>
+                        </h2>
+                        <h2 class="nav-text">
+                            <a href="/drinks" id="drinks-link" style="font-size: inherit; font-family: inherit; text-decoration: none; color: inherit;">Drinks</a>
+                        </h2>
+                    </div>
+        
+                    <div class="nav-container-right">
+                        
+                         
+                       {{template "navbar.html" .}}
+        
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+
+        </header>
+
+        <div class="containers">
+            <!-- Left Side -->
+            <div class="container-left custom-gap">
+                {{if .error}}
+                    {{.error}}
+                {{end}}
+                <!-- Main Card -->
+                {{if .Products}}
+                    {{range .Products}}
+                        <div class="card" data-id="{{ .ID}}">
+                            <div class="card-image">
+                                <img src="{{ .ImageName}}" alt="Burger Image">
+                            </div>
+                            <div class="card-content">
+                                <h2 class="card-title">{{ .Name}}</h2>
+                                <p class="card-description">{{ .Description}}</p>
+                            </div>
+                            <div class="add-button-container">
+                                <span class="price">{{ .Price}}</span>
+                                <button class="add-button" data-id="{{ .ID}}" data-name="{{ .Name}}" data-price="{{ .Price}}">Add</button>
+                            </div>
+                        </div>
+                    {{end}}
+                {{else}}
+                    <h2 class="card-title">There's nothing to see here... yet!</h2>
+                {{end}}
+                <!-- End Main Card -->
+            </div>
+            <!-- Left side ends-->
+
+            <!-- Basket -->
+                
+            <div class="container-right">
+                <div class="basket">
+                    <div class="containers-basket">
+                        <h2>Basket</h2>
+                        <img class="basket-icon" src="../static/images/basket_icon.png" alt="Basket Icon">
+                    </div>
+
+                    <div class="container-right-basket">
+                        <ul id="basket-items">
+                            <!-- Basket items will be dynamically rendered here -->
+                        </ul>
+                    </div>
+
+                    <!-- Total section -->
+                    <div class="total-section">
+                        <div class="total-text">Total :</div>
+                        <div class="total-price" id="total-price">$ 0.00</div> <!-- Total Price will be calculated dynamically -->
+                        <button id="buy-button">Buy</button>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- End Basket -->
+        </div>
+
+        <footer>
+            <p>2024</p>
+        </footer>
+
+    </div>
+
+    <script src="../static/scripts/script.js"></script> <!-- Link to the JavaScript file -->
+</body>
+</html>

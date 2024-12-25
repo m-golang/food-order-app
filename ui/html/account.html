@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/styles/style.css"> <!-- Link to the CSS file -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title}} - Burger & Fishes </title>
+</head>
+<body> 
+    <div class="main-container">
+        <header>
+            <!-- Nav -->
+            <nav>
+                <div class="containers-nav containers">
+                    <div class="nav-container-left">
+                        <a href="#">
+                            <img class="home-icon" src="../static/images/burger_fish_logo.png" alt="Burger and Fish Icon">
+                        </a>
+                        <h2 class="nav-text">
+                            <a href="/" id="burgers-link" style="font-size: inherit; font-family: inherit; text-decoration: none; color: inherit;">Burgers</a>
+                        </h2>
+                        <h2 class="nav-text">
+                            <a href="/fishes" id="fishes-link" style="font-size: inherit; font-family: inherit; text-decoration: none; color: inherit;">Fishes</a>
+                        </h2>
+                        <h2 class="nav-text">
+                            <a href="/drinks" id="drinks-link" style="font-size: inherit; font-family: inherit; text-decoration: none; color: inherit;">Drinks</a>
+                        </h2>
+                    </div>
+        
+                    <div class="nav-container-right">
+                        
+                        {{template "navbar.html" .}}
+        
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+
+        </header>
+
+        <div class="containers">
+            <!-- Left Side -->
+            <div class="container-left custom-gap">
+                {{if .msg_success}}
+                    <div class="alert alert-success">
+                        {{.msg_success}}
+                    </div>
+                {{end}}
+
+                <form action='/user/update' method='POST' id="updateForm" novalidate>
+                    <input type="hidden" name="_method" value="PATCH" />
+                    
+                    <div class="row">
+                        {{if .phone_number}}
+                            <input type="text" style="font-size: 20px;padding: 10px; margin: 15px;" value="{{.phone_number}}" readonly/>
+                        {{end}}
+                    </div>
+                
+                    <div class="row">
+                        {{if .full_name}}
+                            <input type="text" style="font-size: 20px;padding: 10px; margin: 15px;" name="full_name" value="{{.full_name}}" required />
+                        {{end}}
+                    </div>
+                
+                    <div class="row button">
+                        <input style="font-size: 20px;padding: 10px; margin: 15px;" type="submit" value="Update" />
+                    </div>
+                </form>
+            </div>
+            <!-- Left side ends-->
+
+            <!-- Right side -->
+                
+            <!-- <div class="container-right">
+               
+            </div> -->
+            <!-- End Right side -->
+        </div>
+
+        
+
+    </div>
+
+    <script src="../static/scripts/script.js"></script> <!-- Link to the JavaScript file -->
+    <script>
+        document.getElementById('updateForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            const formData = new FormData(this);
+            const requestOptions = {
+                method: 'PATCH', // Change method to PATCH
+                body: formData,
+            };
+    
+            fetch('/user/update', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Optionally, show a success message or redirect
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>

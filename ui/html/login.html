@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/styles/signup_style.css"> <!-- Link to the CSS file -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Burger & Fishes </title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="wrapper">
+            <div class="title"><span>Login Form</span></div>
+            {{if .error}}
+                <p style="margin-left: 45px; color: red; font-weight: bold;">{{.error}}</p>
+            {{end}}
+            {{if .error_invalid_creds}}
+                <p style="margin-left: 45px; color: red; font-weight: bold;">{{.error_invalid_creds}}</p>
+            {{end}}
+            <form action='/login' method='POST' novalidate>
+
+                <div class="row">
+                    {{if .error_phone}}
+                        <p style="font-size: 12px; margin-left: 15px; color: red; font-weight: bold;">{{.error_phone}}</p>
+                    {{end}}
+                    <input type="text" name="phone_number" placeholder="Phone number with country code" required />
+                </div>
+
+                <div class="row">
+                    <input type="password" name="password" placeholder="Password" required />
+                </div>
+                <div class="row button">
+                    <input type="submit" value="Login" />
+                </div>
+
+                <div class="row">
+                    <a href="/" class="login-link hmb">Main page</a>
+                    <a href="/signup" class="login-link">Signup now</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

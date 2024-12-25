@@ -1,0 +1,380 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+html, body {
+    height: 100%; /* Full height of the browser window */
+    margin: 0; /* Remove default margin */
+}
+
+body {
+    line-height: 1.5;
+    background-color: #ffffff;
+    color: #333333;
+    overflow-y: scroll;
+}
+
+
+
+
+
+/* Containers */
+.main-container {
+    width: 100%; /* Full width of the screen */
+    min-height: 100%; /* At least 100% of the viewport height */
+    display: flex; /* Optional: to align content within */
+    flex-direction: column; /* Optional: Stack children vertically */
+    max-width: 1200px; /* Limit to 1200px max */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding and borders in element’s size */
+    height: 100%;
+}
+
+.containers-nav {
+    margin-top: -15px;
+    margin-bottom: -15px;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between the containers */
+    width: 100%; /* Ensure the grid takes up full width */
+    box-sizing: border-box; /* Ensure padding/borders are accounted for */
+}
+
+
+.nav-container-left, .nav-container-right {
+    display: flex; /* Enable flexbox layout */
+    gap: 20px; /* Space between items */
+    padding: 15px;
+    border-radius: 20px;
+    box-sizing: border-box; /* Ensure padding and border are included in element’s size */
+}
+
+.nav-container-right {
+    height: 100%;
+    align-items: center; /* Center items vertically */
+    justify-content: right; /* Center items horizontally */
+}
+
+.nav-container-left {
+    align-items: center; /* Center items vertically */
+    justify-content: left; /* Center items horizontally */
+}
+
+h2 {
+    font-size: 18px;
+}
+
+.home-icon {
+    width: 80px; /* Slightly smaller for extremely small screens */
+    height: 57px;
+}
+
+.account-icon {
+    margin-bottom: -5px;
+    width: 33px; /* Slightly smaller for extremely small screens */
+    height: 33px;
+}
+
+.containers {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between the containers */
+    width: 100%; /* Ensure the grid takes up full width */
+    box-sizing: border-box; /* Ensure padding/borders are accounted for */
+    align-items: start; /* Allow each grid item to size based on its own content */
+}
+
+.container-left {
+    margin-top: 15px;
+    border-radius: 20px;
+    box-sizing: border-box; /* Ensure padding and border are included in element’s size */
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping when there's not enough space */
+    gap: 20px; /* Adds spacing between the cards */
+    justify-content: flex-start; /* Align cards to the left */
+}
+
+.container-right {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 20px;
+    box-sizing: border-box; /* Ensure padding and border are included in element’s size */
+    border: 1px solid #767676;
+}
+
+.container-right:hover {
+    border-color: #fb8d3e; /* New border color when hovered */
+    box-shadow: 0.5px 0.5px 1px 0px #fb8d3e;
+}
+
+
+.container-left.custom-gap {
+    gap: 20px;
+}
+
+/* Media Query to handle smaller screens */
+@media (max-width: 768px) {
+    .containers {
+        grid-template-columns: 1fr; /* Stack containers vertically */
+    }
+    
+    /* Optional: Remove top margin for the left container on smaller screens */
+    .container-left {
+        flex-direction: column; /* Stack cards vertically on smaller screens */
+    }
+}
+
+footer {
+    margin-top: 15px;
+    font-weight: 400;
+    padding: 15px;
+    display: flex; /* Enable Flexbox */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    text-align: center; /* Ensure text is centered in case of wrapping */
+}
+
+/* **************************** Card **************************** */
+
+/* Card Styles */
+.card {
+    width: 100%; /* Full width on small screens */
+    max-width: 160px; /* Max width for each card */
+    display: flex;
+    flex-direction: column; /* Stack image and content vertically */
+    padding: 8px;
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #767676; /* Coca-Cola Red border */
+    text-align: center; /* Center the content */
+    box-sizing: border-box; /* Include padding/border in width/height */
+    transition: transform 0.3s ease; /* Smooth animation for hover */
+    margin: 0px; /* Half of the gap to achieve the desired 25px spacing */
+}
+
+.card:hover {
+    border-color: #fb8d3e; /* New border color when hovered */
+    box-shadow: 0.5px 0.5px 1px 0px #fb8d3e;
+}
+
+
+/* Card Image */
+.card-image img {
+    width: 100%; /* Make the image full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Round the image corners */
+}
+
+/* Card Content */
+.card-content {
+    margin-top: 5px;
+}
+
+/* Card Title */
+.card-title {
+    font-size: 16px; /* Smaller title size */
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 5px; /* Less space between title and description */
+}
+
+/* Card Description */
+.card-description {
+    font-size: 10px; /* Smaller description text */
+    color: #666666;
+    margin-bottom: 0px;
+}
+
+/* Add Button */
+.add-button-container {
+    display: flex;
+    justify-content: space-between; /* Distribute space between price and button */
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Price on the left side of the button */
+.price {
+    font-size: 15px;
+    font-weight: bold;
+    color: #e60000; /* Coca-Cola red color */
+    margin-left: 5px; /* Adjust price to the right */
+}
+
+/* Add Button */
+.add-button {
+    padding: 4px 8px; /* Smaller padding */
+    font-size: 10px; /* Smaller button text */
+    background-color: #fa0e0e; /* Red background */
+    color: white; /* White text color */
+    border: none; /* Remove button border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth color change */
+}
+
+/* Add Button Hover Effect */
+.add-button:hover {
+    background-color: #d10b0b; /* Darker red when hovered */
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .card {
+        max-width: 80%; /* Allow the card to take up more width on mobile */
+    }
+}
+
+.containers-basket {
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space out text and icon */
+    align-items: center; /* Vertically align items */
+    width: 100%;
+    box-sizing: border-box;
+    gap: 10px; /* Gap between text and icon */
+}
+
+.containers-baskets {
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space out text and icon */
+    align-items: center; /* Vertically align items */
+    width: 100%;
+    max-width: 330px;
+    box-sizing: border-box;
+    gap: 10px; /* Gap between text and icon */
+}
+
+.burger-name .burger-price {
+    align-items: center; /* Center items vertically */
+    justify-content: left; /* Center items horizontally */
+}
+
+.decrease .quantity .increase .remove {
+    align-items: center; /* Center items vertically */
+    justify-content: right; /* Center items horizontally */
+}
+
+.basket-icon {
+    width: 30px; /* Icon size */
+    height: 30px;
+}
+
+
+.burger-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+}
+
+.burger-price {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.quantity-controls button {
+    opacity: 100%;
+    background-color: #fb8d3e  ;
+    color: white;
+    border: none;
+    padding: 1px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px; /* Smaller font size for buttons */
+}
+
+.quantity-controls span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.remove {
+    background-color: #e74c3c ;
+    color: white;
+    border: none;
+    padding: 1px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px; /* Smaller font size for remove button */
+}
+
+hr {
+    margin: 5px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.container-right-basket {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #ffffff; /* You can change this to any color */
+    border-radius: 20px;
+    border: 1px solid #767676;
+    box-sizing: border-box; /* Ensure padding and border are included in element’s size */
+}
+
+.container-right-basket:hover {
+    border-color: #fb8d3e; /* New border color when hovered */
+}
+
+/* New section for total price and buy button */
+.total-section {
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.total-text {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.total-price {
+    font-weight: bold;
+    font-size: 16px;
+    color: #d10b0b;
+}
+
+.buy-button {
+    background-color: #fb8d3e;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 14px;
+    border: 2px solid #ffffff;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Optional smooth transition */
+
+}
+
+.buy-button:hover {
+    background-color: #f49c2b; /* Darker shade on hover */
+    box-shadow: 1px 1px 2px 0px #fb8d3e; /* Optional shadow on hover */
+}
+
+
+
+
+#burgers-link.active-link,
+#fishes-link.active-link,
+#drinks-link.active-link {
+    color: #fb8d3e; /* Highlight the active link */
+}
