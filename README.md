@@ -133,6 +133,29 @@ A simple and secure web application for ordering food. Users can sign up, log in
         CREATE INDEX idx_orders_total_amount ON orders (total_amount);     -- Index on total amount for filtering
         CREATE INDEX idx_products_product_name ON products (product_name); -- Index on product name for searching
 
+    -  Insert some products into the Products Table
+       ```bash
+       -- Inserting Burgers
+        INSERT INTO `products` (`product_name`, `product_description`, `product_price`, `product_image`, `menu_id`)
+        VALUES
+        ('Classic Burger', 'A juicy beef burger with lettuce, tomato, and cheese.', 5.99, '../static/images/burger.jpg', 1),
+        ('Cheese Burger', 'A delicious beef patty topped with melted cheese, lettuce, and tomato.', 6.49, '../static/images/burger.jpg', 1),
+        ('Veggie Burger', 'A hearty vegetable patty with fresh veggies and a vegetarian sauce.', 4.99, '../static/images/burger.jpg', 1);
+        
+        -- Inserting Fish Dishes
+        INSERT INTO `products` (`product_name`, `product_description`, `product_price`, `product_image`, `menu_id`)
+        VALUES
+        ('Grilled Salmon', 'Tender grilled salmon fillet served with lemon and garlic sauce.', 9.99, '../static/images/fish.png', 2),
+        ('Fish & Chips', 'Crispy battered fish fillet served with golden fries and tartar sauce.', 7.99, '../static/images/fish.png', 2),
+        ('Tuna Salad', 'Fresh tuna served on a bed of greens with a tangy vinaigrette dressing.', 6.49, '../static/images/fish.png', 2);
+        
+        -- Inserting Drinks
+        INSERT INTO `products` (`product_name`, `product_description`, `product_price`, `product_image`, `menu_id`)
+        VALUES
+        ('Coca-Cola', 'Refreshing Coca-Cola soda in a can.', 1.99, '../static/images/coca-cola.png', 3),
+        ('Pepsi', 'Pepsi soda for a great taste.', 1.99, '../static/images/pepsi.png', 3),
+        ('Sprite', 'Crisp and refreshing lemon-lime soda.', 1.89, '../static/images/sprite.png', 3),
+        ('Fanta', 'Orange flavored Fanta soda for a sweet, tangy taste.', 1.89, '../static/images/fante.png', 3);
 
     - Make sure to adjust the database connection string in the `main.go` file (`dsn` variable).
 
