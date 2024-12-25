@@ -69,15 +69,15 @@ A simple and secure web application for ordering food. Users can sign up, log in
 
         ```bash
         CREATE DATABASE burgerfish;
-
+        
         CREATE TABLE `menu` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(50) NOT NULL,
             `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
             `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+        );
+        
         CREATE TABLE `products` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `product_name` VARCHAR(100) NOT NULL,
@@ -88,11 +88,9 @@ A simple and secure web application for ordering food. Users can sign up, log in
             `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
             `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`),
-            KEY `fk_menu` (`menu_id`),
-            KEY `idx_products_product_name` (`product_name`),
             CONSTRAINT `fk_menu` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE
-        ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+        );
+        
         CREATE TABLE `orders` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `user_id` INT NOT NULL,
@@ -103,23 +101,18 @@ A simple and secure web application for ordering food. Users can sign up, log in
             `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
             `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`),
-            KEY `idx_orders_user_id` (`user_id`),
-            KEY `idx_orders_status` (`status`),
-            KEY `idx_orders_order_date` (`order_date`),
-            KEY `idx_orders_total_amount` (`total_amount`),
             CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-        ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+        );
+        
         CREATE TABLE `order_products` (
             `order_id` INT NOT NULL,
             `product_id` INT NOT NULL,
             `quantity` INT NOT NULL,
             PRIMARY KEY (`order_id`, `product_id`),
-            KEY `fk_product` (`product_id`),
             CONSTRAINT `fk_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
             CONSTRAINT `fk_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+        );
+        
         CREATE TABLE `users` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `full_name` VARCHAR(50) NOT NULL,
@@ -128,9 +121,18 @@ A simple and secure web application for ordering food. Users can sign up, log in
             `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
             `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`),
-            UNIQUE KEY `phone_number` (`phone_number`),
-            KEY `idx_users_phone_number` (`phone_number`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+            UNIQUE KEY `phone_number` (`phone_number`)
+        );
+        
+        -- Creating indexes for faster queries
+        
+        CREATE INDEX idx_users_phone_number ON users (phone_number);       -- Index on phone number for fast lookup
+        CREATE INDEX idx_orders_user_id ON orders (user_id);               -- Index on user_id for fast lookup
+        CREATE INDEX idx_orders_status ON orders (status);                 -- Index on order status
+        CREATE INDEX idx_orders_order_date ON orders (order_date);         -- Index on order date
+        CREATE INDEX idx_orders_total_amount ON orders (total_amount);     -- Index on total amount for filtering
+        CREATE INDEX idx_products_product_name ON products (product_name); -- Index on product name for searching
+
 
     - Make sure to adjust the database connection string in the `main.go` file (`dsn` variable).
 
