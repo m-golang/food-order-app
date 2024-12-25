@@ -134,6 +134,15 @@ A simple and secure web application for ordering food. Users can sign up, log in
         CREATE INDEX idx_products_product_name ON products (product_name); -- Index on product name for searching
 
     -  Insert some products into the Products Table
+        ```bash
+        INSERT INTO `menu` (`name`)
+        VALUES
+        ('Burgers'),
+        ('Fishes'),
+        ('Drinks');
+
+   
+    -  Insert some products into the Products Table
        ```bash
        -- Inserting Burgers
         INSERT INTO `products` (`product_name`, `product_description`, `product_price`, `product_image`, `menu_id`)
@@ -159,12 +168,12 @@ A simple and secure web application for ordering food. Users can sign up, log in
 
     - Make sure to adjust the database connection string in the `main.go` file (`dsn` variable).
 
-3.  **Install Dependencies:** Ensure Go modules are set up and the necessary dependencies are installed:
+4.  **Install Dependencies:** Ensure Go modules are set up and the necessary dependencies are installed:
 
     ```bash
     go mod tidy
 
-4. **Configure Environment Variables:**
+5. **Configure Environment Variables:**
 
 - Set the `dsn` (Data Source Name) for MySQL in the `main.go` file or set it as an environment variable:
     ```bash
