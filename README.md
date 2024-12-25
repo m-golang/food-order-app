@@ -49,7 +49,7 @@ A simple and secure web application for ordering food. Users can sign up, log in
 
 ### Prerequisites
 
-- To run this app, you'll need the following:
+#### To run this app, you'll need the following:
 
 - **Go:** Version 1.18 or higher.
 - **MySQL:** A MySQL server running locally.
