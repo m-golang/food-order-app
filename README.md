@@ -133,7 +133,7 @@ A simple and secure web application for ordering food. Users can sign up, log in
         CREATE INDEX idx_orders_total_amount ON orders (total_amount);     -- Index on total amount for filtering
         CREATE INDEX idx_products_product_name ON products (product_name); -- Index on product name for searching
 
-    -  Insert some products into the Products Table
+    -  Insert some products into the Menu Table
         ```bash
         INSERT INTO `menu` (`name`)
         VALUES
