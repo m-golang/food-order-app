@@ -91,6 +91,17 @@ A simple and secure web application for ordering food. Users can sign up, log in
             CONSTRAINT `fk_menu` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE
         );
         
+         CREATE TABLE `users` (
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `full_name` VARCHAR(50) NOT NULL,
+            `phone_number` VARCHAR(14) NOT NULL,
+            `password_hash` CHAR(60) DEFAULT NULL,
+            `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+            `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `phone_number` (`phone_number`)
+        );
+
         CREATE TABLE `orders` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `user_id` INT NOT NULL,
@@ -111,17 +122,6 @@ A simple and secure web application for ordering food. Users can sign up, log in
             PRIMARY KEY (`order_id`, `product_id`),
             CONSTRAINT `fk_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
             CONSTRAINT `fk_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-        );
-        
-        CREATE TABLE `users` (
-            `id` INT NOT NULL AUTO_INCREMENT,
-            `full_name` VARCHAR(50) NOT NULL,
-            `phone_number` VARCHAR(14) NOT NULL,
-            `password_hash` CHAR(60) DEFAULT NULL,
-            `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-            `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`),
-            UNIQUE KEY `phone_number` (`phone_number`)
         );
         
         -- Creating indexes for faster queries
@@ -164,7 +164,7 @@ A simple and secure web application for ordering food. Users can sign up, log in
         ('Coca-Cola', 'Refreshing Coca-Cola soda in a can.', 1.99, '../static/images/coca-cola.png', 3),
         ('Pepsi', 'Pepsi soda for a great taste.', 1.99, '../static/images/pepsi.png', 3),
         ('Sprite', 'Crisp and refreshing lemon-lime soda.', 1.89, '../static/images/sprite.png', 3),
-        ('Fanta', 'Orange flavored Fanta soda for a sweet, tangy taste.', 1.89, '../static/images/fante.png', 3);
+        ('Fanta', 'Orange flavored Fanta soda for a sweet, tangy taste.', 1.89, '../static/images/fanta.png', 3);
 
     - Make sure to adjust the database connection string in the `main.go` file (`dsn` variable).
 
